@@ -16,9 +16,22 @@ dependencies = [
 ]
 
 
+[project.scripts]
+chat = "llm_client.chat:main"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [{ include = "llm_client", from = "src" }]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+markers = [
+    "unit: fast isolated unit tests",
+    "integration: tests that hit external services",
+]
 
 [dependency-groups]
 dev = [
